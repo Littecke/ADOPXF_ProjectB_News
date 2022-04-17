@@ -29,12 +29,12 @@ namespace News.Consoles
             NewsService service = new NewsService();
             service.NewsAvailable += ReportNewsAvailabe;
 
-            Task<NewsGroup> t1 = null;
+           Task <NewsGroup> t1 = null;
 
             for (NewsCategory c = NewsCategory.business; c < NewsCategory.technology + 1; c++)
             {
                 await service.GetNewsAsync(c);
-                t1 =  service.GetNewsAsync(c);
+                t1 = service.GetNewsAsync(c);
                 theConsoleString.AppendLine($"News in {t1.Result.Category}:");
 
                 foreach (var item in t1.Result.Articles)
@@ -42,10 +42,11 @@ namespace News.Consoles
                     theConsoleString.AppendLine($"    -{item.DateTime}: {item.Title}");
                 }
                 theConsole.WriteLine(theConsoleString.ToString());
-            theConsoleString.Clear();
+            await t1;
             }
-            t1.Wait();
+            theConsoleString.Clear();
 
+            /*
             Task<NewsGroup> t2 = null;
 
             for (NewsCategory c = NewsCategory.business; c < NewsCategory.technology + 1; c++)
@@ -62,6 +63,7 @@ namespace News.Consoles
                 theConsoleString.Clear();
             }
             t2.Wait();
+            */
             void ReportNewsAvailabe(object sender, string message)
             {
                 theConsole.WriteLine($"Event message from news service: {message}");

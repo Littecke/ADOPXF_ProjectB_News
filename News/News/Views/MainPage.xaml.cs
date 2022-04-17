@@ -13,12 +13,11 @@ namespace News.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
  
-    public partial class MainPage : TabbedPage
+    public partial class MainPage
     {
         public MainPage()
         {
-            InitializeComponent();
-
+           InitializeComponent();
         }
     }
 }

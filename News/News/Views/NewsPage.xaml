@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="News.Views.NewsPage">
+
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Beige" >
+            <Button Text="Refresh" Clicked="Button_Clicked"/>
+            <Label x:Name="Headline" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+            <ActivityIndicator x:Name="Activity" IsRunning="True" Color="DarkTurquoise"/>
+            <ListView x:Name="NewsList" ItemTapped="NewsList_ItemTapped">
+
+                <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="5,10,5,15">
+                            <StackLayout HorizontalOptions="Start" Orientation="Vertical" Padding="3">
+                                <Image Source="{Binding UrlToImage}" HorizontalOptions="FillAndExpand" WidthRequest="100"/>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="Start" Orientation="Vertical">
+                                <Label Text="{Binding DateTime, StringFormat='{0:F}'}"/>
+                                    <Label Text="{Binding Title}"/>
+                                </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
